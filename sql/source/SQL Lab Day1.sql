@@ -11,8 +11,13 @@ select count( distinct customer_unique_id ) from customers
 
 -- Q3 Which payment_type is used most, and what is its total payment_value?
 
-select payment_type, count(*) from order_payments
-group by payment_type ;
+select payment_type, count(*) as total_count_of_types, sum(payment_value )
+from order_payments
+group by payment_type 
+order by total_count_of_types desc;
+
+select * from order_payments
+
 
 --Q4. How many reviews are there for each review_score (1 to 5)? What is the overall average score?
 
@@ -21,7 +26,7 @@ from order_reviews
 group by review_score ;
 
 select AVG(review_score) as avg_review_score
-from order_reviews
+from order_reviews;
 
 
 --Q5. Sellers by state: which states have more than 50 sellers?
